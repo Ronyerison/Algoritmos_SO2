@@ -4,6 +4,7 @@
 package br.ufpi.rony.algorithm;
 
 import java.text.DecimalFormat;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,7 +19,12 @@ public class FCFS extends Algorithm {
 
 	@Override
 	public void runAlgorithm(List<Process> processes) {
-		// TODO Auto-generated method stub
+		processes.sort(new Comparator<Process>() {
+			@Override
+			public int compare(Process o1, Process o2) {
+				return o1.getFinishTime().compareTo(o2.getFinishTime());
+			}
+		});
 		executionTime = processes.get(0).getFinishTime();
 		Iterator<Process> it = processes.iterator();
 		while (it.hasNext()) {
